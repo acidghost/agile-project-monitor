@@ -1,2 +1,3 @@
-# agile-project-monitor
-Knowledge Engineering project - VU MSc AI
+# Agile project monitor
+
+###### Knowledge Engineering project - VU MSc AI
