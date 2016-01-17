@@ -1,5 +1,6 @@
 module.exports = {
 
-  debug: true
+  debug: true,
+  prolog_url: 'http://localhost:1337'
 
 };
