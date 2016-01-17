@@ -1,0 +1,11 @@
+tmp/
+node_modules/
+nwjs/
+resources/
+
+app/**/*.js
+app/**/*.css
+
+app/components
+
+dist

@@ -1,0 +1,12 @@
+{
+  "name": "agile-project-monitor",
+  "main": "app.html",
+  "window": {
+    "show": true,
+    "frame": true,
+    "toolbar": false,
+    "position": "center",
+    "width": 800,
+    "height": 800
+  }
+}
