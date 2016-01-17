@@ -3,8 +3,8 @@
     .panel.panel-default
       .panel-heading
         .panel-title
-          h5 Dummy title
+          h5 Projects
       .panel-body
-        .row
+        .row(ng-repeat='project in app.projects')
           .col-xs-12
-            p Lorem ipsum....
+            pre {{ project | json }}

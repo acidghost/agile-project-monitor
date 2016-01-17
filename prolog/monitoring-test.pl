@@ -2,8 +2,15 @@
 
 % Testing facts
 :-	date_time_stamp(date(2006,7,14,0,0,0,0,-,-), Start),
+	date_time_stamp(date(2006,7,27,0,0,0,0,-,-), End),
+	assert_project(1, "New Project", Start, End).
+
+:-	date_time_stamp(date(2006,7,14,0,0,0,0,-,-), Start),
 	date_time_stamp(date(2006,7,20,0,0,0,0,-,-), End),
 	assert_iteration(1, Start, End).
+:-	date_time_stamp(date(2006,7,21,0,0,0,0,-,-), Start),
+	date_time_stamp(date(2006,7,27,0,0,0,0,-,-), End),
+	assert_iteration(2, Start, End).
 
 % Day 1
 :-	date_time_stamp(date(2006,7,14,0,0,0,0,-,-), Stamp),
@@ -55,4 +62,10 @@
 :-	foreach(
 		task(Id, Name, Est, Done, Time),
 		iteration_task(1, task(Id, Name, Est, Done, Time))
+	).
+
+% Add to project
+:-	foreach(
+		iteration(Id, Start, End, Tasks),
+		project_iteration(1, _, iteration(Id, Start, End, Tasks))
 	).

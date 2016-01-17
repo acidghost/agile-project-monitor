@@ -3,6 +3,7 @@
 		task/5,
 		iteration/4,
 		discrepancy/1,
+		project/5,
 		classify_iteration/2,
 		historical_completeness/1,
 		iteration_to_complete/2,
@@ -20,7 +21,10 @@
 		update_task/3,
 		assert_iteration/3,
 		retract_iteration/1,
-		iteration_task/2
+		iteration_task/2,
+		assert_project/4,
+		retract_project/2,
+		project_iteration/3
 	]).
 
 :- use_module(library(lambda)).
@@ -111,9 +115,10 @@ difference_task(Id, Name, TimeStamp, Diff) :-
 
 
 
-:- dynamic task/5, iteration/4.
+:- dynamic task/5, iteration/4, project/5.
 % task(Id, Name, Estimation, Done, TimeStamp).
 % iteration(Id, Start, End, Tasks).
+% project(Id, Name, Start, End, Iterations).
 
 assert_task(Id, Name, Estimation) :-
 	get_time(TimeStamp),
@@ -142,4 +147,26 @@ iteration_task(IdIteration, Task) :-
 	append(Tasks, [Task], NewTasks),
 	assert(iteration(IdIteration, Start, End, NewTasks)),
 	retractall(iteration(IdIteration, Start, End, Tasks)).
+
+assert_project(Id, Name, Start, End) :-
+	assert(project(Id, Name, Start, End, [])).
+
+retract_project(Id, Name) :-
+	retractall(project(Id, Name, _, _)).
+
+project_iteration(Id, Name, Iteration) :-
+	compound(Iteration),
+	project(Id, Name, Start, End, Iterations),
+	Iteration =.. [iteration, _, IStart, IEnd, _],
+	IStart < IEnd,
+	Start =< IStart, End >= IStart,
+	Start =< IEnd, End >= IEnd,
+	\+ (member(Iteration, Iterations)),
+	append(Iterations, [Iteration], NewIterations),
+	assert(project(Id, Name, Start, End, NewIterations)),
+	retractall(project(Id, Name, Start, End, Iterations)).
+
+
+%% REMOVE ME!
+:- consult('./monitoring-test.pl').
 
