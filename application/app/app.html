@@ -15,21 +15,24 @@
   </head>
 
   <body ng-app="agileApp" ng-controller="AppCtrl as app">
-    <div id="window-controls">
-      <button class="btn btn-xs btn-danger" ng-click="app.exitApp()">
-        <i class="fa fa-close"></i>
-      </button>
-    </div>
-    <div class="container">
-      <div id="navbar" class="row">
-        <div class="col-xs-12">
-          <ul class="nav nav-pills" id="navigation">
-            <li role="presentation" ui-sref-active="active">
-              <a ui-sref="home">Agile Project Monitor</a>
-            </li>
-          </ul>
+    <nav id="navbar" class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <ul class="nav nav-pills" id="navigation">
+          <li role="presentation" ui-sref-active="active">
+            <a id="home-link" ui-sref="home">
+              <img alt="Brand" src="images/agile-icon.png" width="50">
+              Project Monitor
+            </a>
+          </li>
+        </ul>
+        <div id="window-controls" class="well well-sm pull-right">
+          <button class="btn btn-xs btn-danger" ng-click="app.exitApp()">
+            <i class="fa fa-close"></i>
+          </button>
         </div>
       </div>
+    </nav>
+    <div class="container">
       <section ui-view></section>
     </div>
   </body>

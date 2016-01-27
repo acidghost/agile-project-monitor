@@ -16,23 +16,42 @@
 @nav-pills-border-radius: 3px;
 @nav-pills-active-link-hover-color: @gray-darker;
 
+@font-face {
+  font-family: Raleway;
+  src: url(fonts/Raleway-Regular.ttf);
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Raleway;
+  src: url(../fonts/Raleway-SemiBold.ttf);
+  font-weight: 600;
+}
 
 body {
 
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 1px;
+
   #window-controls {
-    position: absolute;
+    position: fixed;
     right: 12px;
-    top: 12px;
+    top: 15px;
     z-index: 999;
   }
 
   & > .container {
-    margin-top: 30px;
+    margin-top: 90px;
     margin-bottom: 50px;
   }
 
   #navbar {
     margin-bottom: 20px;
+  }
+
+  #home-link {
+    font-weight: 600;
+    font-family: 'Raleway', sans-serif;
   }
 
   .panel {
