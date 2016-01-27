@@ -39,3 +39,5 @@
                       .col-xs-12.col-rotate
                         div {{ update.when | date:'dd-MM-yy' }}
                       .col-xs-12.col-remaining {{ update.remaining }}
+                      .col-xs-12
+                        div(class='col-bar-{{ update.remaining }}')
