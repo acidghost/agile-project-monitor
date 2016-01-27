@@ -90,9 +90,9 @@
 
 % TASK UPDATES FOR SPRINT 2
 :- 	date_time_stamp(date(2006,7,21,0,0,0,0,-,-), When1),
-	assert(task_update(25, 3, When1, 10, 0)),
+	assert(task_update(25, 3, When1, 2, 0)),
 	date_time_stamp(date(2006,7,21,0,0,0,0,-,-), When2),
-	assert(task_update(26, 4, When2, 8, 0)).
+	assert(task_update(26, 4, When2, 1, 0)).
 
 :- 	date_time_stamp(date(2006,7,21,0,0,0,0,-,-), When1),
 	assert(task_update(27, 5, When1, 10, 9)),
@@ -139,7 +139,7 @@
 	assert(iteration(3, Start, End)),
 	assert(project_iteration(1, 3)).
 
-% NEW TASKS FOR SPRINT 2
+% NEW TASKS FOR SPRINT 3
 :-	assert(task(8, "New Feature 8", "Cool feature story", [])),
 	assert(project_task(1, 8)),
 	assert(task(9, "New Feature 9", "Cool feature story", [])),

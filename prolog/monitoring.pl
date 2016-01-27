@@ -1,7 +1,10 @@
 :- module(monitoring,
 	[
 		velocity_chart/5,
-		burndown_chart/3,
+		burndown_chart/4,
+		aggregated_burndown/7,
+		aggregated_burndown_discrepancy/5,
+		velocity_chart_discrepancy/4,
 
 		project/6,
 		iteration/3,
@@ -30,19 +33,67 @@
 :-	getenv("AGILE_SCENARIO", Scenario), consult(Scenario); !.
 
 
+velocity_chart_discrepancy(0, _, _, none).
+velocity_chart_discrepancy(Current, Percentile66, _, high) :-
+	Current > Percentile66.
+velocity_chart_discrepancy(Current, Percentile66, Percentile33, medium) :-
+	Current >= Percentile33, Current =< Percentile66.
+velocity_chart_discrepancy(Current, _, Percentile33, low) :-
+	Current < Percentile33.
+
+aggregated_burndown_discrepancy(behind, Behind, _, _, Discrepancy) :-
+	aggregated_burndown_discrepancy(behind, Behind, Discrepancy).
+aggregated_burndown_discrepancy(on_schedule, _, OnSchedule, _, Discrepancy) :-
+	aggregated_burndown_discrepancy(on_schedule, OnSchedule, Discrepancy).
+aggregated_burndown_discrepancy(ahead, _, _, Ahead, Discrepancy) :-
+	aggregated_burndown_discrepancy(ahead, Ahead, Discrepancy).
+aggregated_burndown_discrepancy(on_schedule, _, none).
+aggregated_burndown_discrepancy(_, Percentage, low) :- Percentage > 0.66.
+aggregated_burndown_discrepancy(_, Percentage, medium) :-
+	Percentage >= 0.33, Percentage =< 0.66.
+aggregated_burndown_discrepancy(_, Percentage, high) :- Percentage < 0.33.
+
+aggregated_burndown(ProjectId, When, Current, Mean, Behind, OnSchedule, Ahead) :-
+	project_iterations(ProjectId, Its),
+	aggregated_burndown(Its, When, [], Current, Mean, Behind, OnSchedule, Ahead).
+aggregated_burndown([It|Its], When, Statuses, Current, Mean, Behind, OnSchedule, Ahead) :-
+	(
+		burndown_chart(It, ItDays, _, ItStatuses),
+		member(When, ItDays),
+		nth0(Index, ItDays, When),
+		nth0(Index, ItStatuses, Current),
+		delete(ItStatuses, Current, ItStatuses2),
+		append(Statuses, ItStatuses2, NewStatuses),
+		aggregated_burndown(Its, When, NewStatuses, Current, Mean, Behind, OnSchedule, Ahead)
+	);
+	(
+		burndown_chart(It, _, _, ItStatuses),
+		append(Statuses, ItStatuses, NewStatuses),
+		aggregated_burndown(Its, When, NewStatuses, Current, Mean, Behind, OnSchedule, Ahead)
+	), !.
+aggregated_burndown([], _, Statuses, _, Mean, Behind, OnSchedule, Ahead) :-
+	length(Statuses, Total),
+	include(=(behind), Statuses, BehindS), length(BehindS, BehindL), Behind is BehindL / Total,
+	include(=(on_schedule), Statuses, OnScheduleS), length(OnScheduleS, OnScheduleL), OnSchedule is OnScheduleL / Total,
+	include(=(ahead), Statuses, AheadS), length(AheadS, AheadL), Ahead is AheadL / Total,
+	List = [Behind, OnSchedule, Ahead],
+	max_list(List, Max),
+	nth0(Index, List, Max),
+	nth0(Index, [behind, on_schedule, ahead], Mean).
+
 burndown_status(Difference, Status) :- Difference =< -0.66, Status = behind, !.
 burndown_status(Difference, Status) :- Difference > -0.66, Difference < 0.66, Status = on_schedule, !.
 burndown_status(Difference, Status) :- Difference >= 0.66, Status = ahead.
 
-burndown_chart(ItId, Differences, Statuses) :-
+burndown_chart(ItId, Days, Differences, Statuses) :-
 	iteration_days(ItId, Days),
-	burndown_chart(ItId, Days, [], Differences, Statuses).
-burndown_chart(ItId, [Day|Days], Acc, Differences, Statuses) :-
+	burndown_chart(ItId, Days, Days, [], Differences, Statuses).
+burndown_chart(ItId, [Day|Days], AllDays, Acc, Differences, Statuses) :-
 	length(Acc, ItDay),
 	iteration_day_difference(ItId, ItDay, Day, Difference),
 	append(Acc, [Difference], NewAcc),
-	burndown_chart(ItId, Days, NewAcc, Differences, Statuses).
-burndown_chart(_, [], Differences, Differences, Statuses) :-
+	burndown_chart(ItId, Days, AllDays, NewAcc, Differences, Statuses).
+burndown_chart(_, [], _, Differences, Differences, Statuses) :-
 	maplist(burndown_status, Differences, Statuses),
 	!. % FIXME
 
