@@ -2,7 +2,7 @@
 	[
 		velocity_chart/5,
 		burndown_chart/4,
-		aggregated_burndown/7,
+		aggregated_burndown/6,
 		aggregated_burndown_discrepancy/5,
 		velocity_chart_discrepancy/4,
 
@@ -53,6 +53,9 @@ aggregated_burndown_discrepancy(_, Percentage, medium) :-
 	Percentage >= 0.33, Percentage =< 0.66.
 aggregated_burndown_discrepancy(_, Percentage, high) :- Percentage < 0.33.
 
+aggregated_burndown(ProjectId, Current, Mean, Behind, OnSchedule, Ahead) :-
+	latest_iteration(ProjectId, _, _, End),
+	aggregated_burndown(ProjectId, End, Current, Mean, Behind, OnSchedule, Ahead).
 aggregated_burndown(ProjectId, When, Current, Mean, Behind, OnSchedule, Ahead) :-
 	project_iterations(ProjectId, Its),
 	aggregated_burndown(Its, When, [], Current, Mean, Behind, OnSchedule, Ahead).

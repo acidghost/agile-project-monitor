@@ -104,4 +104,31 @@ body {
     }
   }
 
+  .color-green {
+    color: @my-green;
+  }
+  .color-orange {
+    color: orange;
+  }
+  .color-red {
+    color: red;
+  }
+  .color-blue {
+    color: @my-blue;
+  }
+
+  .modal-dialog {
+    border: 11px solid rgba(245, 245, 245, 0.2);
+    .modal-content {
+      border: 1px solid @my-blue;
+      border-radius: 0;
+      .modal-header {
+          border-bottom-color: @my-blue;
+      }
+      .modal-footer {
+          border-top-color: @my-blue;
+      }
+    }
+  }
+
 }

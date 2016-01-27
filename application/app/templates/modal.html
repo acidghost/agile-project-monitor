@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h4 class="modal-title">Monitoring results</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-xs-12">
+            <h5 class="color-blue">Burndown</h5>
+            <dl class="dl-horizontal">
+                <dt>Current</dt>
+                <dd><u><i>{{ results.burndown.Current }}</i></u></dd>
+                <dt>Behind</dt>
+                <dd>{{ results.burndown.Behind }}</dd>
+                <dt>OnSchedule</dt>
+                <dd>{{ results.burndown.OnSchedule }}</dd>
+                <dt>Ahead</dt>
+                <dd>{{ results.burndown.Ahead }}</dd>
+                <dt>Mean</dt>
+                <dd>{{ results.burndown.Mean }}</dd>
+                <dt ng-class="{ 'color-green': results.burndown.Discrepancy == 'none' || results.burndown.Discrepancy == 'low', 'color-orange': results.burndown.Discrepancy == 'medium', 'color-red': results.burndown.Discrepancy == 'high' }">Discrepancy</dt>
+                <dd ng-class="{ 'color-green': results.burndown.Discrepancy == 'none' || results.burndown.Discrepancy == 'low', 'color-orange': results.burndown.Discrepancy == 'medium', 'color-red': results.burndown.Discrepancy == 'high' }">{{ results.burndown.Discrepancy }}</dd>
+            </dl>
+            <h5 class="color-blue">Velocity</h5>
+            <dl class="dl-horizontal">
+                <dt>Current</dt>
+                <dd><u><i>{{ results.velocity.Current }}</i></u></dd>
+                <dt>33th percentile</dt>
+                <dd>{{ results.velocity.Percentile33 }}</dd>
+                <dt>66th percentile</dt>
+                <dd>{{ results.velocity.Percentile66 }}</dd>
+                <dt>Mean</dt>
+                <dd>{{ results.velocity.Mean }}</dd>
+                <dt ng-class="{ 'color-green': results.velocity.Discrepancy == 'none' || results.velocity.Discrepancy == 'low', 'color-orange': results.velocity.Discrepancy == 'medium', 'color-red': results.velocity.Discrepancy == 'high' }">Discrepancy</dt>
+                <dd ng-class="{ 'color-green': results.velocity.Discrepancy == 'none' || results.velocity.Discrepancy == 'low', 'color-orange': results.velocity.Discrepancy == 'medium', 'color-red': results.velocity.Discrepancy == 'high' }">{{ results.velocity.Discrepancy }}</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-blue btn-sm" type="button" ng-click="$dismiss()">OK</button>
+</div>
