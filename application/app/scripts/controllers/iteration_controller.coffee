@@ -8,5 +8,9 @@ app.controller 'IterationCtrl', [ 'config', 'Pengine', 'iteration', 'updates', c
         config = _config
         Pengine = _Pengine
 
+        @grouped = _.groupBy(@updates, 'task.id')
+        delete @grouped._
+        @last_task_id = _.last(_.keys(@grouped))
+
 ]
 

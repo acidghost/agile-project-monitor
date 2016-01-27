@@ -7,5 +7,18 @@
       .panel-body
         .row(ng-repeat='project in app.projects')
           .col-xs-12
-            pre {{ project | json }}
-            a(ui-sref='project({ id: project.id })') Go to project
+            dl.dl-horizontal
+              dt ID
+              dd {{ project.id }}
+              dt Name
+              dd {{ project.name }}
+              dt Start
+              dd {{ project.start | date }}
+              dt End
+              dd {{ project.end | date }}
+              dt Iteration size
+              dd {{ project.size }}
+              dt Estimations unit
+              dd {{ project.unit }}
+            a.btn.btn-default.btn-xs(ui-sref='project({ id: project.id })') Go to project
+            hr(ng-show='$index < app.projects.length - 1')

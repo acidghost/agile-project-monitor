@@ -11,12 +11,26 @@ app.config [ '$urlRouterProvider', '$stateProvider', 'viewProvider',
                 template: viewProvider.renderView 'home'
                 controller: 'HomeCtrl',
                 controllerAs: 'home'
+
             .state 'project',
                 url: '/project/:id',
                 template: viewProvider.renderView 'project'
                 controller: 'ProjectCtrl'
                 controllerAs: 'project'
                 resolve:
+                    project: ['$stateParams', 'Pengine', ($stateParams, Pengine) ->
+                        proj_id = $stateParams.id
+                        query = Pengine("project(#{proj_id}, Name, Start, End, Size, Unit).")
+                        query.then (data) ->
+                            mapped = data.map (proj) ->
+                                id: proj_id
+                                name: proj.Name
+                                start: new Date(proj.Start * 1000)
+                                end: new Date(proj.End * 1000)
+                                size: proj.Size
+                                unit: _.words(proj.Unit).map(_.upperFirst).join ' '
+                            mapped[0]
+                    ]
                     iterations: ['$stateParams', 'Pengine', ($stateParams, Pengine) ->
                         proj_id = $stateParams.id
                         query = Pengine("
@@ -28,6 +42,7 @@ app.config [ '$urlRouterProvider', '$stateProvider', 'viewProvider',
                                 start: new Date(it.Start * 1000)
                                 end: new Date(it.End * 1000)
                     ]
+
             .state 'iteration',
                 url: '/iteration/:id'
                 template: viewProvider.renderView 'iteration'

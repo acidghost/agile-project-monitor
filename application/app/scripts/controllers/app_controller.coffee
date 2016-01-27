@@ -19,12 +19,7 @@ app.controller 'AppCtrl', [ 'config', 'Pengine', class AppCtrl
                 start: new Date(proj.Start * 1000)
                 end: new Date(proj.End * 1000)
                 size: proj.Size
-                unit: proj.Unit
-
-        # iterations_query = Pengine('iteration(Id, Start, End, _).')
-        # iterations_query.then (data) ->
-        #     console.log data
-
+                unit: _.words(proj.Unit).map(_.upperFirst).join ' '
 
     exitApp: -> gui.App.quit()
 

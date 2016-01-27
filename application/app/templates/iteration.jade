@@ -9,6 +9,39 @@
             .col-xs-3
               a.btn.btn-xs.btn-default.pull-right(ui-sref='project({ id: iteration.iteration.project_id })') Back
       .panel-body
-        .row(ng-repeat='update in iteration.updates')
+        .row
           .col-xs-12
-            pre {{ update | json }}
+            dl.dl-horizontal
+              dt ID
+              dd {{ iteration.iteration.id }}
+              dt Start
+              dd {{ iteration.iteration.start | date }}
+              dt End
+              dd {{ iteration.iteration.end | date }}
+        .panel.panel-default(ng-repeat='(task_id, updates) in iteration.grouped')
+          .panel-heading
+            .panel-title
+              h6 Task {{ task_id }}
+          .panel-body
+            .row
+              .col-xs-12
+                dl.dl-horizontal
+                  dt ID
+                  dd {{ updates[0].task.id }}
+                  dt Name
+                  dd {{ updates[0].task.name }}
+                  dt Story
+                  dd {{ updates[0].task.story }}
+                  dt Labels
+                  dd {{ updates[0].task.labels }}
+                  dt Initial effort
+                  dd {{ updates[0].initial }}
+                h6 Task updates
+                .row(ng-repeat='update in updates')
+                  .col-xs-12
+                    dl.dl-horizontal
+                      dt When
+                      dd {{ update.when | date }}
+                      dt Remaining effort
+                      dd {{ update.remaining }}
+              hr(ng-show='task_id != iteration.last_task_id')

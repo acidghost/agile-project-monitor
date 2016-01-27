@@ -5,11 +5,36 @@
         .panel-title
           .row
             .col-xs-9
-              h5 Iterations
+              h5 Project
             .col-xs-3
               a.btn.btn-xs.btn-default.pull-right(ui-sref='home') Back
       .panel-body
-        .row(ng-repeat='iteration in project.iterations')
+        .row
           .col-xs-12
-            pre {{ iteration | json }}
-            a(ui-sref='iteration({ id: iteration.id })') Go to iteration
+            dl.dl-horizontal
+              dt ID
+              dd {{ project.project.id }}
+              dt Name
+              dd {{ project.project.name }}
+              dt Start
+              dd {{ project.project.start | date }}
+              dt End
+              dd {{ project.project.end | date }}
+              dt Iteration size
+              dd {{ project.project.size }}
+              dt Estimations unit
+              dd {{ project.project.unit }}
+        .panel.panel-default
+          .panel-heading
+            .panel-title
+              h6 Iterations
+          .panel-body
+            .row(ng-repeat='iteration in project.iterations')
+              .col-xs-12
+                dl.dl-horizontal
+                  dt ID
+                  dd {{ iteration.id }}
+                  dt Period
+                  dd {{ iteration.start | date }} - {{ iteration.end | date }}
+                a.btn.btn-default.btn-xs(ui-sref='iteration({ id: iteration.id })') Go to iteration
+                hr(ng-show='$index < project.iterations.length - 1')
