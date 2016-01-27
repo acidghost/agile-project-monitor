@@ -57,6 +57,18 @@ body {
     }
   }
 
+  .btn-group-vertical {
+    width: 100%;
+  }
+
+  .btn-blue {
+    .button-variant(white, lighten(@my-blue, 20%), lighten(@my-blue, 10%));
+  }
+
+  .btn-red {
+    .button-variant(white, lightcoral, darken(lightcoral, 10%));
+  }
+
   .updates-table {
     padding-top: 20px;
     .col-rotate > * {

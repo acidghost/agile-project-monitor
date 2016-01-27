@@ -21,8 +21,8 @@
               dt Estimations unit
               dd {{ project.unit }}
           .col-xs-3
-            a.btn.btn-default.btn-xs(ui-sref='project({ id: project.id })')
-              i.fa.fa-eye &nbsp;
-              | Show
+            .btn-group-vertical
+              show-btn(state='project({ id: {{project.id}} })')
+              monitor-btn(project-id='{{ project.id }}')
           .col-xs-12
             hr(ng-show='$index < app.projects.length - 1')

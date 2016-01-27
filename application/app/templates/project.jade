@@ -7,12 +7,10 @@
             .col-xs-9
               h5 Project {{ project.project.id }}
             .col-xs-3
-              a.btn.btn-xs.btn-default.pull-right(ui-sref='home')
-                i.fa.fa-chevron-left.fa- &nbsp;
-                | Back
+              back-btn(state='home')
       .panel-body
         .row
-          .col-xs-12
+          .col-xs-9
             dl.dl-horizontal
               dt Name
               dd {{ project.project.name }}
@@ -24,6 +22,9 @@
               dd {{ project.project.size }}
               dt Estimations unit
               dd {{ project.project.unit }}
+          .col-xs-3
+            .btn-group-vertical
+              monitor-btn(project-id='{{ project.project.id }}')
         .panel.panel-blue
           .panel-heading
             .panel-title
@@ -37,8 +38,6 @@
                   dt Period
                   dd {{ iteration.start | date }} - {{ iteration.end | date }}
               .col-xs-3
-                a.btn.btn-default.btn-xs(ui-sref='iteration({ id: iteration.id })')
-                  i.fa.fa-eye &nbsp;
-                  | Show
+                show-btn(state='iteration({ id: {{iteration.id}} })')
               .col-xs-12
                 hr(ng-show='$index < project.iterations.length - 1')

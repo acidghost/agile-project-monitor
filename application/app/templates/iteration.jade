@@ -7,9 +7,7 @@
             .col-xs-9
               h5 Iteration {{ iteration.iteration.id }}
             .col-xs-3
-              a.btn.btn-xs.btn-default.pull-right(ui-sref='project({ id: iteration.iteration.project_id })')
-                i.fa.fa-chevron-left.fa- &nbsp;
-                | Back
+              back-btn(state='project({ id: {{iteration.iteration.project_id}} })')
       .panel-body
         .row
           .col-xs-12
