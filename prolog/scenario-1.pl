@@ -119,19 +119,19 @@
 	assert(task_update(37, 6, When4, 6, 0)).
 
 :- 	date_time_stamp(date(2006,7,21,0,0,0,0,-,-), When1),
-	assert(task_update(38, 7, When1, 6, 6)),
+	assert(task_update(38, 7, When1, 8, 8)),
 	date_time_stamp(date(2006,7,22,0,0,0,0,-,-), When2),
-	assert(task_update(39, 7, When2, 6, 5)),
+	assert(task_update(39, 7, When2, 8, 5)),
 	date_time_stamp(date(2006,7,23,0,0,0,0,-,-), When3),
-	assert(task_update(40, 7, When3, 6, 4)),
+	assert(task_update(40, 7, When3, 8, 4)),
 	date_time_stamp(date(2006,7,24,0,0,0,0,-,-), When4),
-	assert(task_update(41, 7, When4, 6, 3)),
+	assert(task_update(41, 7, When4, 8, 4)),
 	date_time_stamp(date(2006,7,25,0,0,0,0,-,-), When5),
-	assert(task_update(42, 7, When5, 6, 2)),
+	assert(task_update(42, 7, When5, 8, 3)),
 	date_time_stamp(date(2006,7,26,0,0,0,0,-,-), When6),
-	assert(task_update(43, 7, When6, 6, 1)),
+	assert(task_update(43, 7, When6, 8, 2)),
 	date_time_stamp(date(2006,7,27,0,0,0,0,-,-), When7),
-	assert(task_update(44, 7, When7, 6, 0)).
+	assert(task_update(44, 7, When7, 8, 1)).
 
 % SPRINT 3
 :- 	date_time_stamp(date(2006,7,28,0,0,0,0,-,-), Start),
@@ -150,6 +150,9 @@
 	assert(project_task(1, 11)).
 
 % TASK UPDATES FOR SPRINT 3
+% :-	date_time_stamp(date(2006,7,28,0,0,0,0,-,-), When1),
+% 	assert(task_update(44, 7, When1, 2, 0)).
+
 :- 	date_time_stamp(date(2006,7,28,0,0,0,0,-,-), When1),
 	assert(task_update(45, 8, When1, 10, 9)),
 	date_time_stamp(date(2006,7,29,0,0,0,0,-,-), When2),
@@ -201,3 +204,64 @@
 	assert(task_update(67, 11, When6, 12, 5)),
 	date_time_stamp(date(2006,8,3,0,0,0,0,-,-), When7),
 	assert(task_update(68, 11, When7, 12, 4)).
+
+% SPRINT 4
+:- 	date_time_stamp(date(2006,8,4,0,0,0,0,-,-), Start),
+	date_time_stamp(date(2006,8,10,0,0,0,0,-,-), End),
+	assert(iteration(4, Start, End)),
+	assert(project_iteration(1, 4)).
+
+% NEW TASKS FOR SPRINT 4
+:-	assert(task(12, "New Feature 12", "Cool feature story", [])),
+	assert(project_task(1, 12)),
+	assert(task(13, "New Feature 13", "Cool feature story", [])),
+	assert(project_task(1, 13)).
+
+% TASK UPDATES FOR SPRINT 4
+:- 	date_time_stamp(date(2006,8,4,0,0,0,0,-,-), When1),
+	assert(task_update(69, 8, When1, 1, 0)),
+	date_time_stamp(date(2006,8,4,0,0,0,0,-,-), When2),
+	assert(task_update(70, 11, When2, 4, 2)),
+	date_time_stamp(date(2006,8,5,0,0,0,0,-,-), When3),
+	assert(task_update(71, 11, When3, 4, 0)).
+
+:- 	date_time_stamp(date(2006,8,4,0,0,0,0,-,-), When1),
+	assert(task_update(72, 12, When1, 12, 12)),
+	date_time_stamp(date(2006,8,5,0,0,0,0,-,-), When2),
+	assert(task_update(73, 12, When2, 12, 11)),
+	date_time_stamp(date(2006,8,6,0,0,0,0,-,-), When3),
+	assert(task_update(74, 12, When3, 12, 10)),
+	date_time_stamp(date(2006,8,7,0,0,0,0,-,-), When4),
+	assert(task_update(75, 12, When4, 12, 8)),
+	date_time_stamp(date(2006,8,8,0,0,0,0,-,-), When5),
+	assert(task_update(76, 12, When5, 12, 6)),
+	date_time_stamp(date(2006,8,9,0,0,0,0,-,-), When6),
+	assert(task_update(77, 12, When6, 12, 2)),
+	date_time_stamp(date(2006,8,10,0,0,0,0,-,-), When7),
+	assert(task_update(78, 12, When7, 12, 2)).
+
+:- 	date_time_stamp(date(2006,8,4,0,0,0,0,-,-), When1),
+	assert(task_update(79, 13, When1, 12, 12)),
+	date_time_stamp(date(2006,8,5,0,0,0,0,-,-), When2),
+	assert(task_update(80, 13, When2, 12, 11)),
+	date_time_stamp(date(2006,8,6,0,0,0,0,-,-), When3),
+	assert(task_update(81, 13, When3, 12, 10)),
+	date_time_stamp(date(2006,8,7,0,0,0,0,-,-), When4),
+	assert(task_update(82, 13, When4, 12, 8)),
+	date_time_stamp(date(2006,8,8,0,0,0,0,-,-), When5),
+	assert(task_update(83, 13, When5, 12, 6)),
+	date_time_stamp(date(2006,8,9,0,0,0,0,-,-), When6),
+	assert(task_update(84, 13, When6, 12, 2)),
+	date_time_stamp(date(2006,8,10,0,0,0,0,-,-), When7),
+	assert(task_update(85, 13, When7, 12, 2)).
+
+% PROJECT 2
+:- 	date_time_stamp(date(2006,7,14,0,0,0,0,-,-), Start),
+	date_time_stamp(date(2007,7,13,0,0,0,0,-,-), End),
+	assert(project(2, "Project Two", Start, End, 10, t_shirt)).
+
+% SPRINT 2-1
+:- 	date_time_stamp(date(2006,7,14,0,0,0,0,-,-), Start),
+	date_time_stamp(date(2006,7,20,0,0,0,0,-,-), End),
+	assert(iteration(5, Start, End)),
+	assert(project_iteration(2, 5)).

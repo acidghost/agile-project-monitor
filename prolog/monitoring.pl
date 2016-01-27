@@ -122,7 +122,7 @@ percentile(SortedData, Length, Percentile, Value) :-
 	integer((Percentile / 100) * Length) ->
 	(
 		Index is (Percentile / 100) * Length,
-		include(=<(Index), SortedData, LessThan),
+		include(>=(Index), SortedData, LessThan),
 		length(LessThan, LLT),
 		nth1(LLT, SortedData, LLTth),
 		nth1(LLT+1, SortedData, LLT2th),
