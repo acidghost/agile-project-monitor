@@ -1,12 +1,12 @@
 .row
   .col-xs-12
-    .panel.panel-default
+    .panel.panel-blue
       .panel-heading
         .panel-title
           h5 Projects
       .panel-body
         .row(ng-repeat='project in app.projects')
-          .col-xs-12
+          .col-xs-9
             dl.dl-horizontal
               dt ID
               dd {{ project.id }}
@@ -20,5 +20,9 @@
               dd {{ project.size }}
               dt Estimations unit
               dd {{ project.unit }}
-            a.btn.btn-default.btn-xs(ui-sref='project({ id: project.id })') Go to project
+          .col-xs-3
+            a.btn.btn-default.btn-xs(ui-sref='project({ id: project.id })')
+              i.fa.fa-eye &nbsp;
+              | Show
+          .col-xs-12
             hr(ng-show='$index < app.projects.length - 1')

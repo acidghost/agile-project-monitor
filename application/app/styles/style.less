@@ -1,17 +1,21 @@
 @import "../components/bootstrap/less/bootstrap";
 @import "../components/font-awesome/css/font-awesome.css";
 
-@body-bg: @gray-darker;
-@text-color: whitesmoke;
-@link-color: @gray-lighter;
-@link-hover-color: @gray-dark;
+@my-green: lighten(darkgreen, 8%);
+@my-blue: darken(#0280FD, 20%);
+
+@body-bg: lighten(@gray-lighter, 2%);
+@text-color: @gray-darker;
+@link-color: @gray-darker;
+@link-hover-color: @gray-light;
 @modal-content-bg: @body-bg;
 @modal-content-border-color: fadeOut(whitesmoke, 80%);
 @modal-header-border-color: @gray-dark;
-@hr-border: @gray-dark;
+@hr-border: @my-blue;
 @nav-pills-active-link-hover-bg: @gray-lighter;
 @nav-pills-border-radius: 3px;
 @nav-pills-active-link-hover-color: @gray-darker;
+
 
 body {
 
@@ -23,7 +27,7 @@ body {
   }
 
   & > .container {
-    margin-top: 60px;
+    margin-top: 30px;
     margin-bottom: 50px;
   }
 
@@ -40,6 +44,32 @@ body {
         margin: 0;
         font-weight: bold;
       }
+    }
+  }
+
+  .panel-blue {
+    .panel-variant(darken(@my-blue, 8%), white, @my-blue, darken(@my-blue, 8%));
+    .panel-title {
+      h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+        color: white;
+      }
+    }
+  }
+
+  .updates-table {
+    padding-top: 20px;
+    .col-rotate > * {
+        transform: rotate(50deg);
+        font-size: 10px;
+        color: lightcoral;
+        width: 50px;
+    }
+    .col-remaining {
+      padding-top: 30px;
+      text-align: center;
+      font-weight: bold;
+      color: @my-green;
     }
   }
 
