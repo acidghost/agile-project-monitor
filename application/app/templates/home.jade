@@ -8,3 +8,4 @@
         .row(ng-repeat='project in app.projects')
           .col-xs-12
             pre {{ project | json }}
+            a(ui-sref='project({ id: project.id })') Go to project

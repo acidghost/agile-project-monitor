@@ -1,0 +1,15 @@
+.row
+  .col-xs-12
+    .panel.panel-default
+      .panel-heading
+        .panel-title
+          .row
+            .col-xs-9
+              h5 Iterations
+            .col-xs-3
+              a.btn.btn-xs.btn-default.pull-right(ui-sref='home') Back
+      .panel-body
+        .row(ng-repeat='iteration in project.iterations')
+          .col-xs-12
+            pre {{ iteration | json }}
+            a(ui-sref='iteration({ id: iteration.id })') Go to iteration

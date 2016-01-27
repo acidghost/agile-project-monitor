@@ -1,0 +1,14 @@
+.row
+  .col-xs-12
+    .panel.panel-default
+      .panel-heading
+        .panel-title
+          .row
+            .col-xs-9
+              h5 Iteration
+            .col-xs-3
+              a.btn.btn-xs.btn-default.pull-right(ui-sref='project({ id: iteration.iteration.project_id })') Back
+      .panel-body
+        .row(ng-repeat='update in iteration.updates')
+          .col-xs-12
+            pre {{ update | json }}

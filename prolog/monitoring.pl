@@ -27,6 +27,8 @@
 % task_update(UpdateId, TaskId, When, Initial, Remaining)
 % project_task(ProjectId, TaskId)
 
+:-	getenv("AGILE_SCENARIO", Scenario), consult(Scenario); !.
+
 
 burndown_status(Difference, Status) :- Difference =< -0.66, Status = behind, !.
 burndown_status(Difference, Status) :- Difference > -0.66, Difference < 0.66, Status = on_schedule, !.
